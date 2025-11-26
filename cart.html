@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Cart - Revanth Home Furnitures</title>
+
+<style>
+body { margin:0; background:#f2f2f2; font-family:Arial; }
+header { background:#2d2d2d; padding:20px; text-align:center; color:white; }
+.item { margin:15px; background:white; display:flex; justify-content:space-between; padding:12px; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,.2); }
+.item img { width:120px; height:90px; border-radius:6px; object-fit:cover; }
+.btn { padding:8px 14px; color:white; border:none; background:#ff2626; border-radius:6px; cursor:pointer; }
+.pay-btn { background:#ff7300; }
+.total { font-size:22px; margin:20px; }
+nav { background:#444; text-align:center; padding:12px; }
+nav a { color:white; text-decoration:none; padding:12px; }
+</style>
+
+<script>
+function loadCart(){
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let area = document.getElementById("content");
+    let total = 0;
+    area.innerHTML = "";
+
+    cart.forEach((p, i)=>{
+        total += p.price;
+
+        area.innerHTML += `
+        <div class="item">
+            <img src="${p.img}">
+            <h3>${p.name}<br>₹${p.price}</h3>
+            <button class="btn" onclick="removeItem(${i})">Remove</button>
+        </div>`;
+    });
+
+    document.getElementById("total").innerHTML = "Total Price: ₹" + total;
+}
+
+function removeItem(i){
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    cart.splice(i,1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+}
+</script>
+
+</head>
+<body onload="loadCart()">
+
+<header><h1>Your Cart</h1></header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+</nav>
+
+<div id="content"></div>
+<div class="total" id="total"></div>
+
+<div style="text-align:center;">
+    <a href="payment.html" class="pay-btn btn">Proceed To Payment</a>
+</div>
+
+</body>
+</html>
