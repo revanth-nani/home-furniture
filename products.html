@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Products - Revanth Home Furnitures</title>
+
+<style>
+body { margin:0; font-family:Arial; background:#eee; }
+header { background:#222; padding:20px; color:white; text-align:center; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px; padding:20px; }
+.card { background:white; border-radius:8px; padding:15px; box-shadow:0 2px 5px rgba(0,0,0,.2); text-align:center; }
+.card img { width:100%; height:220px; object-fit:cover; border-radius:6px; }
+.btn { padding:10px 22px; background:#ff7300; border:none; color:white; border-radius:5px; margin-top:10px; cursor:pointer; }
+nav { background:#444; text-align:center; padding:12px; }
+nav a { color:white; padding:12px; text-decoration:none; }
+footer { background:#222; color:white; text-align:center; padding:15px; margin-top:40px; }
+</style>
+
+<script>
+// Furniture product data
+const products = [
+{ id: 1, name: "Luxury Sofa Set", price: 24999, img:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" },
+{ id: 2, name: "King Size Wooden Bed", price: 39999, img:"https://images.unsplash.com/photo-1616628182503-9ffda7a9439a?auto=format&fit=crop&w=800&q=80" },
+{ id: 3, name: "Glass Dining Table", price: 28999, img:"https://images.unsplash.com/photo-1582582494700-ccd7a70f61b8?auto=format&fit=crop&w=800&q=80" },
+{ id: 4, name: "Modern Wardrobe", price: 34999, img:"https://images.unsplash.com/photo-1585559605151-aa3fda3bc3a5?auto=format&fit=crop&w=800&q=80" }
+];
+
+// Add to cart function
+function addToCart(id){
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    let item = products.find(p => p.id === id);
+    cart.push(item);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert(item.name + " added to cart!");
+}
+</script>
+
+</head>
+<body>
+
+<header><h1>Our Furniture Products</h1></header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+</nav>
+
+<div class="grid">
+<script>
+products.forEach(p=>{
+    document.write(`
+        <div class="card">
+            <img src="${p.img}">
+            <h3>${p.name}</h3>
+            <p>₹${p.price}</p>
+            <button class="btn" onclick="addToCart(${p.id})">Add To Cart</button>
+        </div>
+    `);
+});
+</script>
+</div>
+
+<footer>© 2025 Revanth Home Furnitures</footer>
+
+</body>
+</html>
