@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Payment - Revanth Home Furnitures</title>
+
+<style>
+body { margin:0; background:#eee; font-family:Arial; }
+header { background:#000; color:white; padding:20px; text-align:center; }
+.box { background:white; max-width:420px; margin:40px auto; padding:25px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,.2); }
+.box select { width:100%; padding:12px; margin-bottom:20px; font-size:16px; }
+.btn { width:100%; background:#ff7300; padding:12px; border:none; color:white; font-size:18px; border-radius:6px; cursor:pointer; }
+footer { text-align:center; padding:15px; background:#222; color:white; margin-top:40px; }
+</style>
+
+<script>
+function placeOrder(){
+    localStorage.setItem("cart", "[]");
+    window.location.href = "thankyou.html";
+}
+</script>
+
+</head>
+<body>
+
+<header><h1>Payment & Delivery</h1></header>
+
+<div class="box">
+    <h3>Select Delivery Area</h3>
+    <select>
+        <option>Hyderabad</option>
+        <option>Bangalore</option>
+        <option>Pune</option>
+        <option>Mumbai</option>
+    </select>
+
+    <h3>Payment Method</h3>
+    <select>
+        <option>Cash On Delivery</option>
+        <option>UPI</option>
+        <option>Credit Card</option>
+        <option>Net Banking</option>
+    </select>
+
+    <button class="btn" onclick="placeOrder()">Place Order</button>
+</div>
+
+<footer>© 2025 Revanth Home Furnitures</footer>
+
+</body>
+</html>
